@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html>
+<head>
+    <title>Viewer Page</title>
+</head>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script src="scripts.js" type="text/javascript"></script>
+    <div class="w3-container" style="padding-top:10px">
+        <select class="w3-select" id="setName" onChange="GetAllCardsInSet(this.value)">
+            <option value="" disabled selected>Please select a Set</option>
+        </select>
+        </br></br>
+        <select class="w3-select" id="cardName" onChange="GetSpecificCard(this.value)">
+            <option value="" disabled selected>Please select a Card</option>
+        </select>
+        </br></br>
+        <script>GetAllSets()</script>
+        <img id="cardImage" style="width: 350px; height: 450px; padding-left: 25px;"></img>
+    </div>
+</body>
+</html>
