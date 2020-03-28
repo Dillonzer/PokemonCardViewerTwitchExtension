@@ -6,7 +6,6 @@ function GetAllSets()
             }).then(data => {
                 var select = document.getElementById("setName")
                 for(index in data.sets) {
-                    console.log(data.sets[index])
                     select.options[select.options.length] = new Option(data.sets[index].name, data.sets[index].code);
                 }
             }).catch(err => {
@@ -26,6 +25,7 @@ function GetAllCardsInSet(setCode)
                 for(index in data.cards) {
                     select.options[select.options.length] = new Option(data.cards[index].name + " - Set Number:" + data.cards[index].number, data.cards[index].id);
                 }
+                GetSpecificCard(data.cards[0].id)
             }).catch(err => {
                 console.log(err)
             });
