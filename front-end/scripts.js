@@ -1,3 +1,15 @@
+window.onload = function()
+{
+    this.GetAllSets();
+    
+    var setSelector = document.getElementById("setName")
+    setSelector.addEventListener("change",this.GetAllCardsInSetNoParam)
+
+    var cardSelector = document.getElementById("cardName")
+    cardSelector.addEventListener("change",this.GetSpecificCardNoParam)
+}
+
+
 function GetAllSets()
 {
     var apiUrl = 'https://api.pokemontcg.io/v1/sets';
@@ -12,6 +24,12 @@ function GetAllSets()
             }).catch(err => {
                 console.log(err)
             });
+}
+
+function GetAllCardsInSetNoParam()
+{
+    var setCode = document.getElementById("setName");
+    GetAllCardsInSet(setCode.value)
 }
 
 function GetAllCardsInSet(setCode)
@@ -30,6 +48,12 @@ function GetAllCardsInSet(setCode)
             }).catch(err => {
                 console.log(err)
             });
+}
+
+function GetSpecificCardNoParam()
+{
+    var cardId = document.getElementById("cardName");
+    GetSpecificCard(cardId.value)
 }
 
 function GetSpecificCard(id)
