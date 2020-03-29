@@ -12,7 +12,7 @@ window.onload = function()
 
 function GetAllSets()
 {
-    var apiUrl = 'https://api.pokemontcg.io/v1/sets';
+    var apiUrl = 'https://api.pokemontcg.io/v1/sets?&pageSize=1000';
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
@@ -34,7 +34,7 @@ function GetAllCardsInSetNoParam()
 
 function GetAllCardsInSet(setCode)
 {
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?setCode='+setCode;
+    var apiUrl = 'https://api.pokemontcg.io/v1/cards?setCode='+setCode+'&pageSize=1000';
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
