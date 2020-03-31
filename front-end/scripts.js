@@ -1,14 +1,10 @@
 window.onload = function()
 {
     this.GetAllSets();
-    
-    var setSelector = document.getElementById("setName")
-    setSelector.addEventListener("change",this.GetAllCardsInSetNoParam)
+    EventListeners();
+    document.getElementById('btn_BySet').click()
 
-    var cardSelector = document.getElementById("cardName")
-    cardSelector.addEventListener("change",this.GetSpecificCardNoParam)
 }
-
 
 function GetAllSets()
 {
@@ -42,7 +38,7 @@ function GetAllCardsInSet(setCode)
                 data.cards.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
                 select.options.length = 0;
                 for(index in data.cards) {
-                    select.options[select.options.length] = new Option(data.cards[index].name + " - Set Number:" + data.cards[index].number, data.cards[index].id);
+                    select.options[select.options.length] = new Option(data.cards[index].name + " (" + data.cards[index].number + ")", data.cards[index].id);
                 }
                 GetSpecificCard(data.cards[0].id)
             }).catch(err => {
@@ -64,7 +60,118 @@ function GetSpecificCard(id)
     }).then(data => {
         var img = document.getElementById("cardImage")
         img.src = data.cards[0].imageUrlHiRes
+        CheckMagnifyingGlass()
     }).catch(err => {
         console.log(err)
     });
+}
+
+function OpenTab(tabName) {
+    var i, tabcontent;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById('div_'+tabName).style.display = "block";
+    document.getElementById('btn_'+tabName).className += " active";
+}   
+
+function EventListeners()
+{
+    document.getElementById("setName").addEventListener("change",function() {GetAllCardsInSetNoParam()})
+    document.getElementById("cardName").addEventListener("change",function() {GetSpecificCardNoParam()})
+    document.getElementById("btn_BySet").addEventListener("click",function() {OpenTab("BySet")})    
+    document.getElementById("btn_ByCardName").addEventListener("click",function() {OpenTab("ByCardName")})
+    document.getElementById("chk_mgnfy_Glass").addEventListener("change",function() {CheckMagnifyingGlass()})
+}
+
+function magnify(imgID, zoom) {
+    var img, glass, w, h, bw;
+    img = document.getElementById(imgID);
+  
+    /* Create magnifier glass: */
+    if(!document.getElementById("magnify_glass"))
+    {
+        glass = document.createElement("DIV");
+        glass.setAttribute("class", "img_magnifier_glass");
+        glass.setAttribute("id","magnify_glass")
+        /* Insert magnifier glass: */
+        img.parentElement.insertBefore(glass, img);
+  
+  
+        /* Set background properties for the magnifier glass: */
+        glass.style.backgroundImage = "url('" + img.src + "')";
+        glass.style.backgroundRepeat = "no-repeat";
+        glass.style.backgroundSize = (img.width  * zoom) + "px " + (img.height * zoom) + "px";
+        bw = 3;
+        w = glass.offsetWidth / 2;
+        h = glass.offsetHeight / 2;
+      
+        /* Execute a function when someone moves the magnifier glass over the image: */
+        glass.addEventListener("mousemove", moveMagnifier);
+        img.addEventListener("mousemove", moveMagnifier);
+      
+        /*and also for touch screens:*/
+        glass.addEventListener("touchmove", moveMagnifier);
+        img.addEventListener("touchmove", moveMagnifier);
+    }
+    
+
+    function moveMagnifier(e) {
+      var pos, x, y;
+      /* Prevent any other actions that may occur when moving over the image */
+      e.preventDefault();
+      /* Get the cursor's x and y positions: */
+      pos = getCursorPos(e);
+      x = pos.x;
+      y = pos.y;
+      /* Prevent the magnifier glass from being positioned outside the image: */
+      if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+      if (x < w / zoom) {x = w / zoom;}
+      if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+      if (y < h / zoom) {y = h / zoom;}
+      /* Set the position of the magnifier glass: */
+      glass.style.left = (x - w) + "px";
+      glass.style.top = (y - h) + "px";
+      /* Display what the magnifier glass "sees": */
+      glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+    }
+  
+    function getCursorPos(e) {
+      var a, x = 0, y = 0;
+      e = e || window.event;
+      /* Get the x and y positions of the image: */
+      a = img.getBoundingClientRect();
+      /* Calculate the cursor's x and y coordinates, relative to the image: */
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /* Consider any page scrolling: */
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return {x : x, y : y};
+    }
+}
+
+function CheckMagnifyingGlass()
+{   
+    var useMagnify = document.getElementById("chk_mgnfy_Glass").checked
+    if(useMagnify)
+    {
+        magnify("cardImage",2);
+        document.getElementById("magnify_glass").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("magnify_glass").style.display = "none";
+    }
 }
