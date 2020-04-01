@@ -60,7 +60,7 @@ function GetSpecificCard(id)
     }).then(data => {
         var img = document.getElementById("cardImage")
         img.src = data.cards[0].imageUrlHiRes
-        CheckMagnifyingGlass()
+        //CheckMagnifyingGlass()
     }).catch(err => {
         console.log(err)
     });
@@ -191,20 +191,26 @@ function GetCardsForSlideShowNoParam()
 function GetCardsForSlideShow(name)
 {    
     var imgs = document.getElementsByClassName("dynamicImage")
-    console.log(imgs.length)
     while(imgs.length > 0) {
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name="'+name+'"&pageSize=1000';
+    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name='+name+'&pageSize=1000';
     fetch(apiUrl).then(response => {
     return response.json();
     }).then(data => {
         for(index in data.cards) {
-            var elem = document.createElement("img");
-            elem.className += "mySlides fade cardSize dynamicImage"
-            elem.src = data.cards[index].imageUrlHiRes
-            document.getElementById("slideshow").appendChild(elem);
+            var dynamicDiv = document.createElement("div");
+            dynamicDiv.className += "mySlides fade dynamicImage"
+            var imgElem = document.createElement("img");
+            var captionElem = document.createElement("div");
+            captionElem.className += " slideshowText"
+            imgElem.className += " cardSize"
+            imgElem.src = data.cards[index].imageUrlHiRes
+            captionElem.innerHTML = data.cards[index].set
+            document.getElementById("slideshow").appendChild(dynamicDiv);
+            dynamicDiv.appendChild(imgElem);
+            dynamicDiv.appendChild(captionElem);
         }
 
         showSlides(1)
