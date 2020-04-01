@@ -15,7 +15,7 @@ function GetAllSets()
                 var select = document.getElementById("setName")
                 data.sets.sort((a,b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate))
                 for(index in data.sets) {
-                    select.options[select.options.length] = new Option(data.sets[index].name, data.sets[index].code);
+                    select.options[select.options.length] = new Option(data.sets[index].name + " (" +data.sets[index].ptcgoCode + ")", data.sets[index].code);
                 }
             }).catch(err => {
                 console.log(err)
@@ -92,7 +92,10 @@ function EventListeners()
     document.getElementById("cardName").addEventListener("change",function() {GetSpecificCardNoParam()})
     document.getElementById("btn_BySet").addEventListener("click",function() {OpenTab("BySet")})    
     document.getElementById("btn_ByCardName").addEventListener("click",function() {OpenTab("ByCardName")})
-    document.getElementById("chk_mgnfy_Glass").addEventListener("change",function() {CheckMagnifyingGlass()})
+    //document.getElementById("chk_mgnfy_Glass").addEventListener("change",function() {CheckMagnifyingGlass()})   
+    document.getElementById("btn_searchCardByName").addEventListener("click",function() {GetCardsForSlideShowNoParam()})
+    document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
+    document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})
 }
 
 function magnify(imgID, zoom) {
@@ -174,4 +177,62 @@ function CheckMagnifyingGlass()
     {
         document.getElementById("magnify_glass").style.display = "none";
     }
+}
+
+//SLIDESHOW STUFF
+var slideIndex = 1
+
+function GetCardsForSlideShowNoParam()
+{
+    var cardName = document.getElementById("txt_cardName");
+    GetCardsForSlideShow(cardName.value)
+}
+
+function GetCardsForSlideShow(name)
+{    
+    var imgs = document.getElementsByClassName("dynamicImage")
+    console.log(imgs.length)
+    while(imgs.length > 0) {
+        imgs[0].parentNode.removeChild(imgs[0]);  
+    }
+
+    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name="'+name+'"&pageSize=1000';
+    fetch(apiUrl).then(response => {
+    return response.json();
+    }).then(data => {
+        for(index in data.cards) {
+            var elem = document.createElement("img");
+            elem.className += "mySlides fade cardSize dynamicImage"
+            elem.src = data.cards[index].imageUrlHiRes
+            document.getElementById("slideshow").appendChild(elem);
+        }
+
+        showSlides(1)
+
+    }).catch(err => {
+        console.log(err)
+    });
+}
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+  document.getElementById("prevSlide").style.display = "block"  
+  document.getElementById("nextSlide").style.display = "block"
 }
