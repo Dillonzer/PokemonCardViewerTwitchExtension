@@ -212,7 +212,7 @@ function GetCardsForSlideShow(name)
     fetch(apiUrl).then(response => {
     return response.json();
     }).then(data => {
-        data.cards.sort((a,b) => a.set - b.set)
+        data.cards.sort((a,b) => (a.set > b.set) ? 1 : -1)
         for(index in data.cards) {
             var dynamicDiv = document.createElement("div");
             dynamicDiv.className += "mySlides fade dynamicImage"
