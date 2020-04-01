@@ -94,6 +94,7 @@ function EventListeners()
     document.getElementById("btn_ByCardName").addEventListener("click",function() {OpenTab("ByCardName")})
     //document.getElementById("chk_mgnfy_Glass").addEventListener("change",function() {CheckMagnifyingGlass()})   
     document.getElementById("btn_searchCardByName").addEventListener("click",function() {GetCardsForSlideShowNoParam()})
+    document.getElementById("txt_cardName").addEventListener("keyup",function() {GetCardsForSlideShowNoParamEnter(event)})
     document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
     document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})
 }
@@ -188,6 +189,18 @@ function GetCardsForSlideShowNoParam()
     GetCardsForSlideShow(cardName.value)
 }
 
+function GetCardsForSlideShowNoParamEnter(event)
+{
+        // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        
+        var cardName = document.getElementById("txt_cardName");
+        GetCardsForSlideShow(cardName.value)
+    }
+}
+
 function GetCardsForSlideShow(name)
 {    
     var imgs = document.getElementsByClassName("dynamicImage")
@@ -199,6 +212,7 @@ function GetCardsForSlideShow(name)
     fetch(apiUrl).then(response => {
     return response.json();
     }).then(data => {
+        data.cards.sort((a,b) => a.set - b.set)
         for(index in data.cards) {
             var dynamicDiv = document.createElement("div");
             dynamicDiv.className += "mySlides fade dynamicImage"
