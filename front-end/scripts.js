@@ -208,7 +208,10 @@ function GetCardsForSlideShow(name)
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name='+name+'&pageSize=1000';
+    var nameWithHyphens = name.replace(" ","-");
+    var nameWithoutHyphens = name.replace("-"," ");
+
+    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name='+nameWithoutHyphens+'|'+nameWithHyphens+'|'+name.trim()+'|'+name+'&pageSize=1000';
     fetch(apiUrl).then(response => {
     return response.json();
     }).then(data => {
