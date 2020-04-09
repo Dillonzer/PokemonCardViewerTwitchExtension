@@ -6,20 +6,26 @@
 </head>
 <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <div class="tab">
+    <div class="tab" id="tabHeader" style="display:none">
         <button class="tablinks" id="btn_BySet">By Set</button>
         <button class="tablinks" id="btn_ByCardName">By Card Name</button>
-        <input type="checkbox" id="chk_mgnfy_Glass" style="display: none;"></input>
+    </div>
+    <div class="loading" id="loadingImg">
+        <p class="loadingText">Loading All Pokemon Cards...</p>
+        <p class="loadingImage">
+            <img src="images/loadingGif.gif">
+        </p>  
+        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.0.1 </br> Created and Maintained by Dillonzer </p>      
     </div>
     <div id="div_BySet" class="tabcontent">
-        <select id="setName" class="prompt">
+        <select id="setName" class="prompt" style="display:none">
             <option value="" disabled selected>Please select a Set</option>
         </select>
         </br></br>
-        <select id="cardName" class="prompt" >
+        <select id="cardName" class="prompt" style="display:none">
             <option value="" disabled selected>Please select a Card</option>
         </select>
-        <img id="cardImage" class="cardSize" src="https://crystal-cdn2.crystalcommerce.com/photos/3732923/pkn-cardback.png">
+        <img id="cardImage" class="cardSize" src="https://crystal-cdn2.crystalcommerce.com/photos/3732923/pkn-cardback.png" style="display:none">
     </div>
     <div id="div_ByCardName" class="tabcontent">
         <input type="text" id="txt_cardName" class="topPrompt" style="float: left; width: 260px;" placeholder="Please type the Card Name Here">

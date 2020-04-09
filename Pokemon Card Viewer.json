@@ -45,7 +45,7 @@
     "iconUrls": {
       "100x100": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/logoeb30f7e0-b588-4e7f-9b46-84fbf404a2e2",
       "24x24": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/taskbarb88cef28-dfd8-4994-9460-b9f494ac2444",
-      "300x200": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/discoveryf74a1e06-6167-4f1b-bd08-bb1d23a4af6a"
+      "300x200": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.0.0/discovery367138a6-f1a6-48c6-87a6-ae00daf16ad3"
     },
     "id": "nrrvpf717ckxt3g6k48vlbi7jonv8x",
     "installationCount": -42,
@@ -56,7 +56,7 @@
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
     "screenshotUrls": [
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/screenshot2633b09a-3321-4f0f-8adc-49066104e86a"
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.0.0/screenshot17a555d2-7ee8-423b-9b30-ec56d305faca"
     ],
     "sku": "",
     "state": "Testing",
@@ -64,7 +64,7 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "viewerSummary": "",
     "viewerUrl": "",
     "viewerUrls": {

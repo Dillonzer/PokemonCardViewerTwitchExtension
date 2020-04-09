@@ -36,7 +36,7 @@
 }
 
 .prompt {
-    width: 300px;
+    width: 320px;
     height: 30px;
     font-size: 100%;
 }
@@ -50,6 +50,36 @@
     width: 320px;
     height: 450px;
     border: none;
+}
+
+.loadingImage {
+    padding-top: 5px;
+    text-align: center;
+    border: none;
+}
+
+.loadingText {
+  color: #f2f2f2;
+  background-color: rgba(0,0,0,0.8);
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  bottom: 8px;
+  width: 100%;
+  font-size: 125%;
+}
+
+.loadingBottomText {
+  color: #f2f2f2;
+  background-color: rgba(0,0,0,0.8);
+  font-size: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  bottom: 8px;
+  width: 100%;
+  font-size: 100%;
 }
 
 .img_magnifier_glass {

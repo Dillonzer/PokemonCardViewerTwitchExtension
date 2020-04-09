@@ -1,25 +1,88 @@
-window.onload = function()
-{
-    this.GetAllSets();
-    EventListeners();
-    document.getElementById('btn_BySet').click()
+var AllCards = [];
+var AllSets = [];
 
+function Set(name, code, ptcgo_code, releaseDate)
+{
+    this.Name = name;
+    this.Code = code;
+    this.PTCGO_Code = ptcgo_code;
+    this.ReleaseDate = releaseDate;
 }
 
-function GetAllSets()
+function Card(name, set, setCode, setNumber, releaseDate, image)
+{
+    this.Name = name;
+    this.Set = set;
+    this.SetCode = setCode;
+    this.SetNumber = setNumber;
+    this.ReleaseDate = releaseDate;
+    this.Image = image;
+}
+
+window.onload = function()
+{
+    this.Setup(GetAllSets);    
+}
+
+function Setup(GetAllSetsCallback)
+{
+    GetAllSetsCallback(GetAllCards)
+}
+
+function GetAllSets(GetAllCardsCallback)
 {
     var apiUrl = 'https://api.pokemontcg.io/v1/sets?&pageSize=1000';
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
-                var select = document.getElementById("setName")
-                data.sets.sort((a,b) => Date.parse(b.releaseDate) - Date.parse(a.releaseDate))
                 for(index in data.sets) {
-                    select.options[select.options.length] = new Option(data.sets[index].name + " (" +data.sets[index].ptcgoCode + ")", data.sets[index].code);
+                    AllSets.push(new Set(data.sets[index].name, data.sets[index].code, data.sets[index].ptcgoCode, data.sets[index].releaseDate));
                 }
+                GetAllCardsCallback(SetSetListBoxes);
             }).catch(err => {
                 console.log(err)
             });
+}
+
+function GetAllCards(SetSetListBoxCallback)
+{
+    var setCounter = 0
+    for(let i = 0; i < AllSets.length; i++)
+    {
+        let setCode = AllSets[i].Code;
+        let setName = AllSets[i].Name;
+        let releaseDate = AllSets[i].ReleaseDate
+        var apiUrl = 'https://api.pokemontcg.io/v1/cards?setCode='+AllSets[i].Code+'&pageSize=1000';
+            fetch(apiUrl).then(response => { 
+                return response.json(); 
+            }).then(data => {
+                for(index in data.cards) {
+                    AllCards.push(new Card(data.cards[index].name, setName, setCode, data.cards[index].number, releaseDate, data.cards[index].imageUrlHiRes))
+                }    
+                setCounter++  
+                if(setCounter == AllSets.length)
+                {
+                    SetSetListBoxCallback(GetAllCardsInSetNoParam);
+                }        
+            }).catch(err => {
+                console.log(err)
+            });
+    }
+}
+
+function SetSetListBoxes(GetCallCardsInSetCallBack)
+{
+    var setSelect = document.getElementById("setName")
+    var sortedSets = AllSets.sort((a,b) => Date.parse(b.ReleaseDate) - Date.parse(a.ReleaseDate))
+
+    for(var i = 0; i < sortedSets.length; i++)
+    {
+        setSelect.options[setSelect.options.length] = new Option(sortedSets[i].Name + " (" + sortedSets[i].PTCGO_Code + ")", sortedSets[i].Code);
+    }
+    setSelect.selectedIndex = "1";
+    GetCallCardsInSetCallBack()
+
+
 }
 
 function GetAllCardsInSetNoParam()
@@ -29,41 +92,45 @@ function GetAllCardsInSetNoParam()
 }
 
 function GetAllCardsInSet(setCode)
-{
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?setCode='+setCode+'&pageSize=1000';
-            fetch(apiUrl).then(response => {
-            return response.json();
-            }).then(data => {
-                var select = document.getElementById("cardName")
-                data.cards.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
-                select.options.length = 0;
-                for(index in data.cards) {
-                    select.options[select.options.length] = new Option(data.cards[index].name + " (" + data.cards[index].number + ")", data.cards[index].id);
-                }
-                GetSpecificCard(data.cards[0].id)
-            }).catch(err => {
-                console.log(err)
-            });
+{ 
+    var cardSelect = document.getElementById("cardName")
+    var cardsInSet = AllCards.filter(cards => cards.SetCode === setCode)
+    var sortedCardsInSet = cardsInSet.sort((a,b) => (a.Name > b.Name) ? 1 : ((b.Name > a.Name) ? -1 : 0))
+    cardSelect.options.length = 0;
+    for (let i = 0; i < sortedCardsInSet.length; i++)
+    {
+        cardSelect.options[cardSelect.options.length] = new Option(sortedCardsInSet[i].Name + " (" + sortedCardsInSet[i].SetNumber + ")", sortedCardsInSet[i].Image);
+    }
+    GetSpecificCardNoParam()
 }
 
 function GetSpecificCardNoParam()
 {
     var cardId = document.getElementById("cardName");
     GetSpecificCard(cardId.value)
+
+    if(document.getElementById("loadingImg").style.display != "none")
+    {
+        HideLoadImage(EventListeners)
+    }
 }
 
-function GetSpecificCard(id)
-{
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?id='+id;
-    fetch(apiUrl).then(response => {
-    return response.json();
-    }).then(data => {
-        var img = document.getElementById("cardImage")
-        img.src = data.cards[0].imageUrlHiRes
-        //CheckMagnifyingGlass()
-    }).catch(err => {
-        console.log(err)
-    });
+function GetSpecificCard(image)
+{    
+    var img = document.getElementById("cardImage")
+    img.src = image
+}
+
+function HideLoadImage(EventListenersCallBack)
+{    
+    var img = document.getElementById("loadingImg").style.display="none";
+    var cardSelect = document.getElementById("cardName").style.display="inline"; 
+    var setCode = document.getElementById("setName").style.display="inline";
+    var img = document.getElementById("cardImage").style.display="inline";
+    var tab = document.getElementById("tabHeader").style.display="block";
+    
+    EventListeners()
+
 }
 
 function OpenTab(tabName) {
@@ -92,92 +159,12 @@ function EventListeners()
     document.getElementById("cardName").addEventListener("change",function() {GetSpecificCardNoParam()})
     document.getElementById("btn_BySet").addEventListener("click",function() {OpenTab("BySet")})    
     document.getElementById("btn_ByCardName").addEventListener("click",function() {OpenTab("ByCardName")})
-    //document.getElementById("chk_mgnfy_Glass").addEventListener("change",function() {CheckMagnifyingGlass()})   
     document.getElementById("btn_searchCardByName").addEventListener("click",function() {GetCardsForSlideShowNoParam()})
     document.getElementById("txt_cardName").addEventListener("keyup",function() {GetCardsForSlideShowNoParamEnter(event)})
     document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
     document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})
-}
-
-function magnify(imgID, zoom) {
-    var img, glass, w, h, bw;
-    img = document.getElementById(imgID);
-  
-    /* Create magnifier glass: */
-    if(!document.getElementById("magnify_glass"))
-    {
-        glass = document.createElement("DIV");
-        glass.setAttribute("class", "img_magnifier_glass");
-        glass.setAttribute("id","magnify_glass")
-        /* Insert magnifier glass: */
-        img.parentElement.insertBefore(glass, img);
-  
-  
-        /* Set background properties for the magnifier glass: */
-        glass.style.backgroundImage = "url('" + img.src + "')";
-        glass.style.backgroundRepeat = "no-repeat";
-        glass.style.backgroundSize = (img.width  * zoom) + "px " + (img.height * zoom) + "px";
-        bw = 3;
-        w = glass.offsetWidth / 2;
-        h = glass.offsetHeight / 2;
-      
-        /* Execute a function when someone moves the magnifier glass over the image: */
-        glass.addEventListener("mousemove", moveMagnifier);
-        img.addEventListener("mousemove", moveMagnifier);
-      
-        /*and also for touch screens:*/
-        glass.addEventListener("touchmove", moveMagnifier);
-        img.addEventListener("touchmove", moveMagnifier);
-    }
     
-
-    function moveMagnifier(e) {
-      var pos, x, y;
-      /* Prevent any other actions that may occur when moving over the image */
-      e.preventDefault();
-      /* Get the cursor's x and y positions: */
-      pos = getCursorPos(e);
-      x = pos.x;
-      y = pos.y;
-      /* Prevent the magnifier glass from being positioned outside the image: */
-      if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
-      if (x < w / zoom) {x = w / zoom;}
-      if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
-      if (y < h / zoom) {y = h / zoom;}
-      /* Set the position of the magnifier glass: */
-      glass.style.left = (x - w) + "px";
-      glass.style.top = (y - h) + "px";
-      /* Display what the magnifier glass "sees": */
-      glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
-    }
-  
-    function getCursorPos(e) {
-      var a, x = 0, y = 0;
-      e = e || window.event;
-      /* Get the x and y positions of the image: */
-      a = img.getBoundingClientRect();
-      /* Calculate the cursor's x and y coordinates, relative to the image: */
-      x = e.pageX - a.left;
-      y = e.pageY - a.top;
-      /* Consider any page scrolling: */
-      x = x - window.pageXOffset;
-      y = y - window.pageYOffset;
-      return {x : x, y : y};
-    }
-}
-
-function CheckMagnifyingGlass()
-{   
-    var useMagnify = document.getElementById("chk_mgnfy_Glass").checked
-    if(useMagnify)
-    {
-        magnify("cardImage",2);
-        document.getElementById("magnify_glass").style.display = "block";
-    }
-    else
-    {
-        document.getElementById("magnify_glass").style.display = "none";
-    }
+    document.getElementById('btn_BySet').click()
 }
 
 //SLIDESHOW STUFF
@@ -208,33 +195,35 @@ function GetCardsForSlideShow(name)
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
-    var nameWithHyphens = name.replace(" ","-");
-    var nameWithoutHyphens = name.replace("-"," ");
+    var nameWithHyphens = name.replace(" ","-").toLowerCase();
+    var nameWithoutHyphens = name.replace("-"," ").toLowerCase();
+    var lowerCaseName = name.toLowerCase();
 
-    var apiUrl = 'https://api.pokemontcg.io/v1/cards?name='+nameWithoutHyphens+'|'+nameWithHyphens+'|'+name.trim()+'|'+name+'&pageSize=1000';
-    fetch(apiUrl).then(response => {
-    return response.json();
-    }).then(data => {
-        data.cards.sort((a,b) => (a.set > b.set) ? 1 : -1)
-        for(index in data.cards) {
-            var dynamicDiv = document.createElement("div");
-            dynamicDiv.className += "mySlides fade dynamicImage"
-            var imgElem = document.createElement("img");
-            var captionElem = document.createElement("div");
-            captionElem.className += " slideshowText"
-            imgElem.className += " cardSize"
-            imgElem.src = data.cards[index].imageUrlHiRes
-            captionElem.innerHTML = data.cards[index].set
-            document.getElementById("slideshow").appendChild(dynamicDiv);
-            dynamicDiv.appendChild(imgElem);
-            dynamicDiv.appendChild(captionElem);
-        }
+    var cardsByName = AllCards.filter(cards => cards.Name.toLowerCase() === nameWithHyphens || cards.Name.toLowerCase() === nameWithoutHyphens || cards.Name.toLowerCase() === lowerCaseName.trim() || cards.Name.toLowerCase() === lowerCaseName || cards.Name.toLowerCase().includes(lowerCaseName))
+    var sortedCardsByName = cardsByName.sort((a,b) => Date.parse(b.ReleaseDate) - Date.parse(a.ReleaseDate))
 
+    console.log(sortedCardsByName.length)
+    for(let i = 0; i < sortedCardsByName.length; i++)
+    {
+        console.log(sortedCardsByName[i].Image)
+        var dynamicDiv = document.createElement("div");
+        dynamicDiv.className += "mySlides fade dynamicImage"
+        var imgElem = document.createElement("img");
+        var captionElem = document.createElement("div");
+        captionElem.className += " slideshowText"
+        imgElem.className += " cardSize"
+        imgElem.src = sortedCardsByName[i].Image
+        captionElem.innerHTML = sortedCardsByName[i].Set + " </br> Release Date: " + sortedCardsByName[i].ReleaseDate
+        document.getElementById("slideshow").appendChild(dynamicDiv);
+        dynamicDiv.appendChild(imgElem);
+        dynamicDiv.appendChild(captionElem);
+    }
+    
+    if(sortedCardsByName.length > 0)
+    {
+        slideIndex = 1
         showSlides(1)
-
-    }).catch(err => {
-        console.log(err)
-    });
+    }
 }
 
 // Next/previous controls
