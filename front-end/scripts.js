@@ -210,10 +210,8 @@ function GetCardsForSlideShow(name)
         cards.Name.toLowerCase().includes(lowerCaseName.trim()))
     var sortedCardsByName = cardsByName.sort((a,b) => Date.parse(b.ReleaseDate) - Date.parse(a.ReleaseDate))
 
-    console.log(sortedCardsByName.length)
     for(let i = 0; i < sortedCardsByName.length; i++)
     {
-        console.log(sortedCardsByName[i].Image)
         var dynamicDiv = document.createElement("div");
         dynamicDiv.className += "mySlides fade dynamicImage"
         var imgElem = document.createElement("img");
@@ -227,11 +225,18 @@ function GetCardsForSlideShow(name)
         dynamicDiv.appendChild(captionElem);
     }
     
-    if(sortedCardsByName.length > 0)
+    if(sortedCardsByName.length <= 0)
     {
-        slideIndex = 1
-        showSlides(1)
+        var dynamicDiv = document.createElement("div");
+        dynamicDiv.className += "mySlides fade dynamicImage"
+        var pElem = document.createElement("p");
+        pElem.className += " loadingText"
+        pElem.innerHTML = "Could not find a card containing '" + name + "'"
+        document.getElementById("slideshow").appendChild(dynamicDiv);
+        dynamicDiv.appendChild(pElem);
     }
+    slideIndex = 1
+    showSlides(1)
 }
 
 // Next/previous controls
