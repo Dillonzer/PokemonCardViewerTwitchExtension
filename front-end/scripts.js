@@ -47,6 +47,7 @@ function GetAllSets(GetAllCardsCallback)
 function GetAllCards(SetSetListBoxCallback)
 {
     var setCounter = 0
+    var cardCounter = 0
     for(let i = 0; i < AllSets.length; i++)
     {
         let setCode = AllSets[i].Code;
@@ -58,8 +59,10 @@ function GetAllCards(SetSetListBoxCallback)
             }).then(data => {
                 for(index in data.cards) {
                     AllCards.push(new Card(data.cards[index].name, setName, setCode, data.cards[index].number, releaseDate, data.cards[index].imageUrlHiRes))
+                    cardCounter++
                 }    
-                setCounter++  
+                setCounter++ 
+                document.getElementById("loadingTxt").innerHTML = "Loading All Pokemon Cards... (" + (cardCounter / (117*AllSets.length) * 100).toFixed(0) + "%)"
                 if(setCounter == AllSets.length)
                 {
                     SetSetListBoxCallback(GetAllCardsInSetNoParam);
