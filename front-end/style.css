@@ -39,6 +39,7 @@
     width: 320px;
     height: 30px;
     font-size: 100%;
+    padding-left: 2px;
 }
 
 .img_magnifier_container {
@@ -47,6 +48,7 @@
 
 .cardSize {     
     padding-top: 15px;
+    padding-left: 2px;
     width: 320px;
     height: 450px;
     border: none;
