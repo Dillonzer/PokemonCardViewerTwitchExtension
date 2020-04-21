@@ -1,3 +1,5 @@
+const proxyurl = "https://dillonzer-cors-anywhere.herokuapp.com/";
+
 var AllCards = [];
 var AllSets = [];
 
@@ -31,7 +33,7 @@ function Setup(GetAllSetsCallback)
 
 function GetAllSets(GetAllCardsCallback)
 {
-    var apiUrl = 'https://api.pokemontcg.io/v1/sets?&pageSize=1000';
+    var apiUrl = proxyurl + 'https://api.pokemontcg.io/v1/sets?&pageSize=1000';
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
@@ -53,7 +55,7 @@ function GetAllCards(SetSetListBoxCallback)
         let setCode = AllSets[i].Code;
         let setName = AllSets[i].Name;
         let releaseDate = AllSets[i].ReleaseDate
-        var apiUrl = 'https://api.pokemontcg.io/v1/cards?setCode='+AllSets[i].Code+'&pageSize=1000';
+        var apiUrl = proxyurl + 'https://api.pokemontcg.io/v1/cards?setCode='+AllSets[i].Code+'&pageSize=1000';
             fetch(apiUrl).then(response => { 
                 return response.json(); 
             }).then(data => {
