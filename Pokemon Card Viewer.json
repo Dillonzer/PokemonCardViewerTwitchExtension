@@ -5,11 +5,11 @@
   "certificateExceptions": [],
   "extensionViews": [
     {
-      "id": "1",
-      "label": "mainView",
+      "id": "2",
+      "label": "",
       "channelId": "56083652",
       "configurationAnchor": "component",
-      "displayChannelName": "dillonzer_pkmn",
+      "displayChannelName": "dillonzer",
       "type": "component",
       "features": {
         "isBitsEnabled": false,
@@ -64,7 +64,7 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "viewerSummary": "",
     "viewerUrl": "",
     "viewerUrls": {

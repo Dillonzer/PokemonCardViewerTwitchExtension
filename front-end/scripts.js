@@ -1,4 +1,5 @@
 const proxyurl = "https://dillonzer-cors-anywhere.herokuapp.com/";
+const pokeurl = "https://ptcg-api.herokuapp.com"
 
 var AllCards = [];
 var AllSets = [];
@@ -33,12 +34,12 @@ function Setup(GetAllSetsCallback)
 
 function GetAllSets(GetAllCardsCallback)
 {
-    var apiUrl = proxyurl + 'https://api.pokemontcg.io/v1/sets?&pageSize=1000';
+    var apiUrl = proxyurl+pokeurl+"/api/sets";
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
-                for(index in data.sets) {
-                    AllSets.push(new Set(data.sets[index].name, data.sets[index].code, data.sets[index].ptcgoCode, data.sets[index].releaseDate));
+                for(index in data) {
+                    AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
                 }
                 GetAllCardsCallback(SetSetListBoxes);
             }).catch(err => {
@@ -48,31 +49,25 @@ function GetAllSets(GetAllCardsCallback)
 
 function GetAllCards(SetSetListBoxCallback)
 {
-    var setCounter = 0
     var cardCounter = 0
-    for(let i = 0; i < AllSets.length; i++)
-    {
-        let setCode = AllSets[i].Code;
-        let setName = AllSets[i].Name;
-        let releaseDate = AllSets[i].ReleaseDate
-        var apiUrl = proxyurl + 'https://api.pokemontcg.io/v1/cards?setCode='+AllSets[i].Code+'&pageSize=1000';
-            fetch(apiUrl).then(response => { 
-                return response.json(); 
-            }).then(data => {
-                for(index in data.cards) {
-                    AllCards.push(new Card(data.cards[index].name, setName, setCode, data.cards[index].number, releaseDate, data.cards[index].imageUrlHiRes))
-                    cardCounter++
-                }    
-                setCounter++ 
-                document.getElementById("loadingTxt").innerHTML = "Loading All Pokemon Cards... (" + (cardCounter / (117*AllSets.length) * 100).toFixed(0) + "%)"
-                if(setCounter == AllSets.length)
-                {
-                    SetSetListBoxCallback(GetAllCardsInSetNoParam);
-                }        
-            }).catch(err => {
-                console.log(err)
-            });
-    }
+    var apiUrl = proxyurl+pokeurl+"/api/cards"
+        fetch(apiUrl).then(response => { 
+            return response.json(); 
+        }).then(data => {
+            for(index in data) {
+                AllCards.push(new Card(data[index].name, data[index].set.name, data[index].set.code, data[index].number, data[index].set.releaseDate, data[index].imageUrlHiRes))
+                cardCounter++ 
+            }     
+
+            if(cardCounter === data.length)
+            {                      
+                SetSetListBoxCallback(GetAllCardsInSetNoParam); 
+            }
+
+        }).catch(err => {
+            console.log(err)
+        });
+    
 }
 
 function SetSetListBoxes(GetCallCardsInSetCallBack)
