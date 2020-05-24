@@ -1,0 +1,15 @@
+Walkthrough:
+1. Hover over Stream and Click the Extension Icon
+2. Wait for loading to complete (~10 - 15 seconds)
+3. Choose By Set or By Card Name
+4a. By Set:
+4aa: Select the Set
+4ab: Select the Card Name
+4ac: Image of the card should be showing below! 
+4b: By Card Name
+4ba: Type in a card name (for this test you can use Scyther if you don't know any card names)
+4bb: Press Search or click Enter
+4bc: An image carousal should  show up with all card containing that search term you used! Use the arrows on screen to navigate
+
+Change Log:
+- Added a Refresh button if the API doesn't return results with the initial load

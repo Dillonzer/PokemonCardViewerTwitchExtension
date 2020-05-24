@@ -9,13 +9,18 @@
     <div class="tab" id="tabHeader" style="display:none">
         <button class="tablinks" id="btn_BySet">By Set</button>
         <button class="tablinks" id="btn_ByCardName">By Card Name</button>
+        <img id="logo" class="imgLogo" src="images/logoimage.png" alt="Logo"/>
     </div>
     <div class="loading" id="loadingImg">
         <p class="loadingText" id="loadingTxt">Loading All Pokemon Cards...</p>
         <p class="loadingImage">
             <img src="images/loadingGif.gif">
         </p>  
-        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.1.0 </br> Created and Maintained by Dillonzer</p>      
+        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.1.1 </br> Created and Maintained by Dillonzer</p>      
+    </div>
+    <div class="refreshDiv" id="refreshSection">
+        <p class="loadingText">Oh no! Looks like there was an issue loading all cards. Please click the button below to try again!</p>
+        <button class="refreshButton" id="btn_refresh">Refresh</button>  
     </div>
     <div id="div_BySet" class="tabcontent">
         <select id="setName" class="prompt" style="display:none">

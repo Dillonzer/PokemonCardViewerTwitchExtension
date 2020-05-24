@@ -1,4 +1,3 @@
-const proxyurl = "https://dillonzer-cors-anywhere.herokuapp.com/";
 const pokeurl = "https://ptcg-api.herokuapp.com"
 
 var AllCards = [];
@@ -24,6 +23,7 @@ function Card(name, set, setCode, setNumber, releaseDate, image)
 
 window.onload = function()
 {
+    EventListeners()
     this.Setup(GetAllSets);    
 }
 
@@ -34,7 +34,7 @@ function Setup(GetAllSetsCallback)
 
 function GetAllSets(GetAllCardsCallback)
 {
-    var apiUrl = proxyurl+pokeurl+"/api/sets";
+    var apiUrl = pokeurl+"/api/sets";
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
@@ -43,6 +43,7 @@ function GetAllSets(GetAllCardsCallback)
                 }
                 GetAllCardsCallback(SetSetListBoxes);
             }).catch(err => {
+                RefreshSection()
                 console.log(err)
             });
 }
@@ -50,7 +51,7 @@ function GetAllSets(GetAllCardsCallback)
 function GetAllCards(SetSetListBoxCallback)
 {
     var cardCounter = 0
-    var apiUrl = proxyurl+pokeurl+"/api/cards"
+    var apiUrl = pokeurl+"/api/cards"
         fetch(apiUrl).then(response => { 
             return response.json(); 
         }).then(data => {
@@ -65,9 +66,28 @@ function GetAllCards(SetSetListBoxCallback)
             }
 
         }).catch(err => {
+            RefreshSection()
             console.log(err)
         });
     
+}
+
+function RefreshSection()
+{
+    var img = document.getElementById("loadingImg").style.display="none";
+    document.getElementById("refreshSection").style.display = "block"
+}
+
+function Refresh()
+{
+    document.getElementById("refreshSection").style.display = "none"
+    document.getElementById("loadingImg").style.display="inline";
+    document.getElementById("cardName").style.display="none"; 
+    document.getElementById("setName").style.display="none";
+    document.getElementById("cardImage").style.display="none";
+    document.getElementById("tabHeader").style.display="none";
+    
+    Setup(GetAllSets)
 }
 
 function SetSetListBoxes(GetCallCardsInSetCallBack)
@@ -111,7 +131,7 @@ function GetSpecificCardNoParam()
 
     if(document.getElementById("loadingImg").style.display != "none")
     {
-        HideLoadImage(EventListeners)
+        HideLoadImage()
     }
 }
 
@@ -121,7 +141,7 @@ function GetSpecificCard(image)
     img.src = image
 }
 
-function HideLoadImage(EventListenersCallBack)
+function HideLoadImage()
 {    
     var img = document.getElementById("loadingImg").style.display="none";
     var cardSelect = document.getElementById("cardName").style.display="inline"; 
@@ -129,8 +149,7 @@ function HideLoadImage(EventListenersCallBack)
     var img = document.getElementById("cardImage").style.display="inline";
     var tab = document.getElementById("tabHeader").style.display="block";
     
-    EventListeners()
-
+    document.getElementById('btn_BySet').click()
 }
 
 function OpenTab(tabName) {
@@ -162,9 +181,8 @@ function EventListeners()
     document.getElementById("btn_searchCardByName").addEventListener("click",function() {GetCardsForSlideShowNoParam()})
     document.getElementById("txt_cardName").addEventListener("keyup",function() {GetCardsForSlideShowNoParamEnter(event)})
     document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
-    document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})
-    
-    document.getElementById('btn_BySet').click()
+    document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})  
+    document.getElementById("btn_refresh").addEventListener("click",function() {Refresh()})   
 }
 
 //SLIDESHOW STUFF
