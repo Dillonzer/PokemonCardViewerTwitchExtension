@@ -41,11 +41,11 @@
     "description": "This extension is for all Pokemon card streamers out there who are tired of loading PNGs of the cards they are talking about during streams! This extension will give users the option to load their own images while enjoying your content!",
     "eulaTosUrl": "",
     "hasChatSupport": false,
-    "iconUrl": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/logoeb30f7e0-b588-4e7f-9b46-84fbf404a2e2",
+    "iconUrl": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/logoa8d3ce58-b9f7-413a-b77b-41e43d10e73f",
     "iconUrls": {
-      "100x100": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/logoeb30f7e0-b588-4e7f-9b46-84fbf404a2e2",
+      "100x100": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/logoa8d3ce58-b9f7-413a-b77b-41e43d10e73f",
       "24x24": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/0.0.1/taskbarb88cef28-dfd8-4994-9460-b9f494ac2444",
-      "300x200": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.0.0/discovery367138a6-f1a6-48c6-87a6-ae00daf16ad3"
+      "300x200": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/discovery44812c0b-8676-4f92-9e43-97019c7a2472"
     },
     "id": "nrrvpf717ckxt3g6k48vlbi7jonv8x",
     "installationCount": -42,
@@ -56,7 +56,9 @@
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
     "screenshotUrls": [
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.0.0/screenshot17a555d2-7ee8-423b-9b30-ec56d305faca"
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshot8f615c88-da7b-4af4-beff-13da2ebb9094",
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshota8976fd7-c79a-45b3-a929-c599667173da",
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshotbdc83199-d45b-4494-adb9-73b5c5413680"
     ],
     "sku": "",
     "state": "Testing",
@@ -64,8 +66,8 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.1.1",
-    "viewerSummary": "",
+    "version": "1.1.2",
+    "viewerSummary": "If you aren't aware of what a card does, look it up via Set or just by Card Name! ",
     "viewerUrl": "",
     "viewerUrls": {
       "component": "https://localhost:8080/video_component.html"

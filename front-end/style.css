@@ -1,7 +1,7 @@
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 2px solid #cd8f00;
+    background-color: #1e3781;
     font-size: 100%;
 }
   
@@ -14,16 +14,29 @@
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 100%;
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+.prompt:focus {
+  box-shadow: none!important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #344780;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+    background-color: #06237a;
 }
 
 /* Style the tab content */
@@ -38,8 +51,14 @@
 .prompt {
     width: 320px;
     height: 30px;
-    font-size: 100%;
+    font-size: 110%;
     padding-left: 2px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    border:3px solid #cd8f00;
+    background-color: #344780;
+    color:#f2f2f2;
+    font-weight: bold;
 }
 
 .img_magnifier_container {
@@ -47,7 +66,6 @@
 }
 
 .cardSize {     
-    padding-top: 15px;
     padding-left: 2px;
     width: 320px;
     height: 450px;
@@ -62,7 +80,7 @@
 
 .loadingText {
   color: #f2f2f2;
-  background-color: rgba(0,0,0,0.8);
+  background-color: #000000;
   font-size: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -74,7 +92,7 @@
 
 .loadingBottomText {
   color: #f2f2f2;
-  background-color: rgba(0,0,0,0.8);
+  background-color: #000000;
   font-size: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -101,12 +119,25 @@ input[type=checkbox] {
 .topPrompt {
     vertical-align: top;
     font-size: 100%;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    border:3px solid #cd8f00;
+    background-color: #344780;
+    color:#f2f2f2;
+    font-weight: bold;
 }
 
 .imgLogo {
   float: right;
-  height: 47px;
-  width: 47px;
+  height: 40px;
+  width: 40px;
+  padding-top: 3px;
+  padding-right: 5px;
+}
+
+.imgtextLogo {
+  height: 40px;
+  padding-top: 3px;
 }
 
 .refreshDiv {
@@ -171,7 +202,7 @@ input[type=checkbox] {
   
   /* On hover, add a black background color with a little bit see-through */
   .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+    background-color: #1e3781;
   }
     
   /* Fading animation */
@@ -184,7 +215,7 @@ input[type=checkbox] {
   /* Caption text */
 .slideshowText {
     color: #f2f2f2;
-    background-color: rgba(0,0,0,0.8);
+    background-color: #000000;
     font-size: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
