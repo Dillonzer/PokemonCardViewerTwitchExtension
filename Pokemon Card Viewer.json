@@ -5,11 +5,11 @@
   "certificateExceptions": [],
   "extensionViews": [
     {
-      "id": "2",
-      "label": "",
+      "id": "1",
+      "label": "Main",
       "channelId": "56083652",
       "configurationAnchor": "component",
-      "displayChannelName": "dillonzer",
+      "displayChannelName": "Dillonzer",
       "type": "component",
       "features": {
         "isBitsEnabled": false,
@@ -56,9 +56,7 @@
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
     "screenshotUrls": [
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshot8f615c88-da7b-4af4-beff-13da2ebb9094",
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshota8976fd7-c79a-45b3-a929-c599667173da",
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshotbdc83199-d45b-4494-adb9-73b5c5413680"
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshotd38917bd-e78e-4b41-9adf-a8bae95fb84e"
     ],
     "sku": "",
     "state": "Testing",
@@ -66,7 +64,7 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "viewerSummary": "If you aren't aware of what a card does, look it up via Set or just by Card Name! ",
     "viewerUrl": "",
     "viewerUrls": {

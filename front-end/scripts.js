@@ -11,7 +11,7 @@ function Set(name, code, ptcgo_code, releaseDate)
     this.ReleaseDate = releaseDate;
 }
 
-function Card(name, set, setCode, setNumber, releaseDate, image)
+function Card(name, set, setCode, setNumber, releaseDate, image, tcgPlayerCardId, tcgPlayerCardUrl)
 {
     this.Name = name;
     this.Set = set;
@@ -19,6 +19,8 @@ function Card(name, set, setCode, setNumber, releaseDate, image)
     this.SetNumber = setNumber;
     this.ReleaseDate = releaseDate;
     this.Image = image;
+    this.TCGPlayerId =  tcgPlayerCardId;
+    this.TCGPlayerUrl = tcgPlayerCardUrl;
 }
 
 window.onload = function()
@@ -56,7 +58,7 @@ function GetAllCards(SetSetListBoxCallback)
             return response.json(); 
         }).then(data => {
             for(index in data) {
-                AllCards.push(new Card(data[index].name, data[index].set.name, data[index].set.code, data[index].number, data[index].set.releaseDate, data[index].imageUrlHiRes))
+                AllCards.push(new Card(data[index].name, data[index].set.name, data[index].set.code, data[index].number, data[index].set.releaseDate, data[index].imageUrlHiRes, data[index].tcgPlayerCardId, data[index].tcgPlayerCardUrl))
                 cardCounter++ 
             }     
 
@@ -213,15 +215,18 @@ function GetCardsForSlideShow(name)
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
+    var nameWithAccents = name.replace(/e/g,"é").toLowerCase();
     var nameWithHyphens = name.replace(" ","-").toLowerCase();
     var nameWithoutHyphens = name.replace("-"," ").toLowerCase();
     var lowerCaseName = name.toLowerCase();
 
     var cardsByName = AllCards.filter(cards => 
+        cards.Name.toLowerCase() === nameWithAccents ||
         cards.Name.toLowerCase() === nameWithHyphens || 
         cards.Name.toLowerCase() === nameWithoutHyphens || 
         cards.Name.toLowerCase() === lowerCaseName.trim() || 
         cards.Name.toLowerCase() === lowerCaseName || 
+        cards.Name.toLowerCase().includes(nameWithAccents) ||
         cards.Name.toLowerCase().includes(lowerCaseName) ||
         cards.Name.toLowerCase().includes(nameWithHyphens) ||
         cards.Name.toLowerCase().includes(nameWithoutHyphens) ||
