@@ -14,3 +14,4 @@ Walkthrough:
 Change Log:
 - Added mobile option (Android Only)
 - Adding mobile.html for the mobile layout.
+- Making loading image smaller

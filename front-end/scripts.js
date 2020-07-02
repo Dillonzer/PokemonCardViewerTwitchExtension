@@ -215,6 +215,12 @@ function GetCardsForSlideShowNoParamEnter(event)
 
 function GetCardsForSlideShow(name)
 {    
+    var mobile = false
+    tabcontent = document.getElementsByClassName("tabcontent");
+    if(tabcontent.length === 0)
+    {        
+        mobile = true
+    }
     var imgs = document.getElementsByClassName("dynamicImage")
     while(imgs.length > 0) {
         imgs[0].parentNode.removeChild(imgs[0]);  
@@ -242,7 +248,15 @@ function GetCardsForSlideShow(name)
         var imgElem = document.createElement("img");
         var captionElem = document.createElement("div");
         captionElem.className += " slideshowText"
-        imgElem.className += " cardSize"
+        if(mobile)
+        {
+            imgElem.className += " m_cardSize"
+        }
+        else
+        {
+            imgElem.className += " cardSize"
+
+        }
         imgElem.src = sortedCardsByName[i].Image
         captionElem.innerHTML = sortedCardsByName[i].Set + " </br> Release Date: " + sortedCardsByName[i].ReleaseDate
         document.getElementById("slideshow").appendChild(dynamicDiv);

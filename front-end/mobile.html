@@ -6,11 +6,12 @@
 </head>
 <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <div class="m_tab" id="tabHeader" style="display:none">
+    <div class="m_tab" id="tabHeader" style="display:none;">
         <button class="tablinks" id="btn_BySet">By Set</button>
         <button class="tablinks" id="btn_ByCardName">By Card Name</button>
         <div style="float: right;">
-            <img id="logo" class="imgLogo" src="images/logoimage.png" alt="Logo"/>
+            <img id="txtlogo" class = "m_imgtextLogo" src="images/TextLogo.png" alt="textlogo"/>
+            <img id="logo" class="m_imgLogo" src="images/logoimage.png" alt="Logo"/>
         </div>
     </div>
     <div class="loading" id="loadingImg">
@@ -25,17 +26,17 @@
         <button class="refreshButton" id="btn_refresh">Refresh</button>  
     </div>
     <div id="div_BySet" class="m_tabcontent">
-        <select id="setName" class="prompt" style="display:none">
+        <select id="setName" class="prompt" style="display:none; font-size: smaller; vertical-align: top; width: 250px;">
             <option value="" disabled selected>Please select a Set</option>
         </select>
-        <select id="cardName" class="prompt" style="display:none">
+        <select id="cardName" class="prompt" style="display:none; font-size: smaller; vertical-align: top; width: 250px;">
             <option value="" disabled selected>Please select a Card</option>
         </select>
-        <img id="cardImage" class="cardSize" style="display:none">
+        <img id="cardImage" class="m_cardSize" style="display:none;">
     </div>
     <div id="div_ByCardName" class="m_tabcontent">
-        <input type="text" id="txt_cardName" class="topPrompt" style="float: left; width: 210px; padding-left: 2px;" placeholder="Please type Card Name Here">
-        <button class="topPrompt" id="btn_searchCardByName" style="float: right; width: 80px">Search</button>  
+        <input type="text" id="txt_cardName" class="topPrompt" style="float: left; width: 160px; font-size: smaller; " placeholder="Card Name">
+        <button class="topPrompt" id="btn_searchCardByName" style="float: right; width: 80px; font-size: smaller; ">Search</button>  
         </br>
         <div class="slideshow-container" id="slideshow">
         </div> 
