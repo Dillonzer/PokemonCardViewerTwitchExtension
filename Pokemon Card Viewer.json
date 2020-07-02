@@ -49,6 +49,29 @@
         "width": 411,
         "height": 731
       }
+    },
+    {
+      "id": "3",
+      "label": "",
+      "channelId": "56083652",
+      "configurationAnchor": "component",
+      "displayChannelName": "Dillonzer",
+      "type": "mobile",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "linked": false,
+      "linkedUserId": "",
+      "mode": "viewer",
+      "isPopout": false,
+      "role": "Broadcaster",
+      "orientation": "Portrait",
+      "frameSize": {
+        "width": 360,
+        "height": 740
+      }
     }
   ],
   "frontendCommand": "",
