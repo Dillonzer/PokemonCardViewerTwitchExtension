@@ -18,6 +18,26 @@
     font-weight: bold;
 }
 
+.m_tab {
+  overflow: hidden;
+  border: 2px solid #cd8f00;
+  background-color: #1e3781;
+  font-size: 100%;
+}
+
+.m_tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 100%;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+
 .prompt:focus {
   box-shadow: none!important;
 }
@@ -39,6 +59,16 @@ button:focus {
     background-color: #06237a;
 }
 
+/* Change background color of buttons on hover */
+.m_tab button:hover {
+  background-color: #344780;
+}
+
+/* Create an active/current tablink class */
+.m_tab button.active {
+  background-color: #06237a;
+}
+
 /* Style the tab content */
 .tabcontent {
     display: none;
@@ -46,6 +76,15 @@ button:focus {
     border-top: none;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
     padding-left: 39px;
+}
+
+/* Style the tab content */
+.m_tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+  padding-left: 29px;
 }
 
 .prompt {

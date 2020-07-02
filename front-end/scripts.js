@@ -159,6 +159,11 @@ function OpenTab(tabName) {
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
+    if(tabcontent.length === 0)
+    {        
+        tabcontent = document.getElementsByClassName("m_tabcontent");
+    }
+
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
@@ -215,18 +220,15 @@ function GetCardsForSlideShow(name)
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
-    var nameWithAccents = name.replace(/e/g,"é").toLowerCase();
     var nameWithHyphens = name.replace(" ","-").toLowerCase();
     var nameWithoutHyphens = name.replace("-"," ").toLowerCase();
     var lowerCaseName = name.toLowerCase();
 
     var cardsByName = AllCards.filter(cards => 
-        cards.Name.toLowerCase() === nameWithAccents ||
         cards.Name.toLowerCase() === nameWithHyphens || 
         cards.Name.toLowerCase() === nameWithoutHyphens || 
         cards.Name.toLowerCase() === lowerCaseName.trim() || 
         cards.Name.toLowerCase() === lowerCaseName || 
-        cards.Name.toLowerCase().includes(nameWithAccents) ||
         cards.Name.toLowerCase().includes(lowerCaseName) ||
         cards.Name.toLowerCase().includes(nameWithHyphens) ||
         cards.Name.toLowerCase().includes(nameWithoutHyphens) ||

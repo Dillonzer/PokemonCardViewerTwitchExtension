@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Viewer Page</title>
+</head>
+<body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <div class="m_tab" id="tabHeader" style="display:none">
+        <button class="tablinks" id="btn_BySet">By Set</button>
+        <button class="tablinks" id="btn_ByCardName">By Card Name</button>
+        <div style="float: right;">
+            <img id="logo" class="imgLogo" src="images/logoimage.png" alt="Logo"/>
+        </div>
+    </div>
+    <div class="loading" id="loadingImg">
+        <p class="loadingText" id="loadingTxt">Loading All Pokemon Cards...</p>
+        <p class="loadingImage">
+            <img src="images/loadingGif.gif">
+        </p>  
+        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.2.0 </br> Created and Maintained by Dillonzer</p>      
+    </div>
+    <div class="refreshDiv" id="refreshSection">
+        <p class="loadingText">Oh no! Looks like there was an issue loading all cards. Please click the button below to try again!</p>
+        <button class="refreshButton" id="btn_refresh">Refresh</button>  
+    </div>
+    <div id="div_BySet" class="m_tabcontent">
+        <select id="setName" class="prompt" style="display:none">
+            <option value="" disabled selected>Please select a Set</option>
+        </select>
+        <select id="cardName" class="prompt" style="display:none">
+            <option value="" disabled selected>Please select a Card</option>
+        </select>
+        <img id="cardImage" class="cardSize" style="display:none">
+    </div>
+    <div id="div_ByCardName" class="m_tabcontent">
+        <input type="text" id="txt_cardName" class="topPrompt" style="float: left; width: 245px; padding-left: 2px;" placeholder="Please type the Card Name Here">
+        <button class="topPrompt" id="btn_searchCardByName" style="float: right; width: 80px">Search</button>  
+        </br>
+        <div class="slideshow-container" id="slideshow">
+        </div> 
+        <a class="prev" id="prevSlide">&#10094;</a>
+        <a class="next" id="nextSlide">&#10095;</a>
+    </div>    
+    
+</body>
+<script src="scripts.js" type="text/javascript"></script>
+</html>
