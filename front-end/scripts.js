@@ -226,18 +226,23 @@ function GetCardsForSlideShow(name)
         imgs[0].parentNode.removeChild(imgs[0]);  
     }
 
+    name = name.replace("`","'")
+    name = name.replace("’","'")
     var nameWithHyphens = name.replace(" ","-").toLowerCase();
-    var nameWithoutHyphens = name.replace("-"," ").toLowerCase();
+    var nameWithoutHyphens = name.replace("-"," ").toLowerCase()    
+    var nameReplaceAnd = name.replace("and", "&").toLowerCase()
     var lowerCaseName = name.toLowerCase();
 
     var cardsByName = AllCards.filter(cards => 
         cards.Name.toLowerCase() === nameWithHyphens || 
         cards.Name.toLowerCase() === nameWithoutHyphens || 
+        cards.Name.toLowerCase() === nameReplaceAnd || 
         cards.Name.toLowerCase() === lowerCaseName.trim() || 
         cards.Name.toLowerCase() === lowerCaseName || 
         cards.Name.toLowerCase().includes(lowerCaseName) ||
         cards.Name.toLowerCase().includes(nameWithHyphens) ||
         cards.Name.toLowerCase().includes(nameWithoutHyphens) ||
+        cards.Name.toLowerCase().includes(nameReplaceAnd) ||
         cards.Name.toLowerCase().includes(lowerCaseName.trim()))
     var sortedCardsByName = cardsByName.sort((a,b) => Date.parse(b.ReleaseDate) - Date.parse(a.ReleaseDate))
 

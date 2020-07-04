@@ -15,3 +15,5 @@ Change Log:
 - Added mobile option (Android Only)
 - Adding mobile.html for the mobile layout.
 - Making loading image smaller
+- Allowing users to use 'and' instead of '&' in the search
+- Replace uncommon apostrophes with '
