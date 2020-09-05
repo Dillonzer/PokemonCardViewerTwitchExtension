@@ -53,7 +53,8 @@ function GetAllSets(GetAllCardsCallback)
 function GetAllCards(SetSetListBoxCallback)
 {
     var cardCounter = 0
-    var apiUrl = pokeurl+"/api/cards"
+    var language = document.getElementById("language");
+    var apiUrl = pokeurl+"/api/cards?locale="+language.value
         fetch(apiUrl).then(response => { 
             return response.json(); 
         }).then(data => {
@@ -82,6 +83,10 @@ function RefreshSection()
 
 function Refresh()
 {
+    
+    AllCards = [];
+    AllSets = [];
+
     document.getElementById("refreshSection").style.display = "none"
     document.getElementById("loadingImg").style.display="inline";
     document.getElementById("cardName").style.display="none"; 
@@ -190,6 +195,7 @@ function EventListeners()
     document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
     document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})  
     document.getElementById("btn_refresh").addEventListener("click",function() {Refresh()})   
+    document.getElementById("language").addEventListener("change",function() {Refresh()})   
 }
 
 //SLIDESHOW STUFF

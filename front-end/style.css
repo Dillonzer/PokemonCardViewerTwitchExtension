@@ -99,6 +99,21 @@ button:focus {
     font-weight: bold;
 }
 
+.languageChoice {
+  width: 125px;
+  float: right;
+  margin-right: 10px;
+  height: 30px;
+  font-size: 110%;
+  padding-left: 5px;
+  margin-top: 8px;
+  border-radius: 7px;
+  border:3px solid #cd8f00;
+  background-color: #344780;
+  color:#f2f2f2;
+  font-weight: bold;
+}
+
 .img_magnifier_container {
     position: relative;
 }

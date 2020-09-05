@@ -5,73 +5,70 @@
   "certificateExceptions": [],
   "extensionViews": [
     {
-      "id": "1",
-      "label": "Main",
       "channelId": "56083652",
       "configurationAnchor": "component",
       "displayChannelName": "Dillonzer",
-      "type": "component",
       "features": {
         "isBitsEnabled": false,
         "isChatEnabled": false,
         "isSubscriptionStatusAvailable": false
       },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Portrait",
       "frameSize": {
         "width": 1280,
         "height": 720
-      }
-    },
-    {
-      "id": "3",
-      "label": "",
-      "channelId": "56083652",
-      "configurationAnchor": "component",
-      "displayChannelName": "Dillonzer",
-      "type": "mobile",
-      "features": {
-        "isBitsEnabled": false,
-        "isChatEnabled": false,
-        "isSubscriptionStatusAvailable": false
       },
+      "id": "5",
+      "isPopout": false,
+      "label": "",
       "linked": false,
       "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
       "orientation": "Portrait",
-      "frameSize": {
-        "width": 360,
-        "height": 740
-      }
+      "type": "component",
+      "viewerType": "Broadcaster"
     },
     {
-      "id": "4",
-      "label": "",
       "channelId": "56083652",
       "configurationAnchor": "component",
       "displayChannelName": "Dillonzer",
-      "type": "mobile",
       "features": {
         "isBitsEnabled": false,
         "isChatEnabled": false,
         "isSubscriptionStatusAvailable": false
       },
+      "frameSize": {
+        "width": 411,
+        "height": 731
+      },
+      "id": "6",
+      "isPopout": false,
+      "label": "",
       "linked": false,
       "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Landscape",
+      "orientation": "Portrait",
+      "type": "mobile",
+      "viewerType": "Broadcaster"
+    },
+    {
+      "channelId": "56083652",
+      "configurationAnchor": "component",
+      "displayChannelName": "Dillonzer",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
       "frameSize": {
-        "width": 768,
+        "width": 600,
         "height": 1024
-      }
+      },
+      "id": "7",
+      "isPopout": false,
+      "label": "",
+      "linked": false,
+      "linkedUserId": "",
+      "orientation": "Landscape",
+      "type": "mobile",
+      "viewerType": "Broadcaster"
     }
   ],
   "frontendCommand": "",
@@ -110,7 +107,7 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "viewerSummary": "If you aren't aware of what a card does, look it up via Set or just by Card Name! ",
     "viewerUrl": "",
     "viewerUrls": {
@@ -127,13 +124,13 @@
         "aspectHeight": 0,
         "aspectRatioX": 44000,
         "aspectRatioY": 64000,
-        "autoscale": true,
         "scalePixels": 420,
         "targetHeight": 10000,
         "size": 0,
         "zoom": false,
         "zoomPixels": 0,
-        "canLinkExternalContent": false
+        "canLinkExternalContent": false,
+        "autoScale": true
       },
       "config": {
         "viewerUrl": "https://localhost:8080/config.html",
@@ -144,5 +141,5 @@
     "whitelistedPanelUrls": []
   },
   "name": "Pokemon Card Viewer",
-  "version": 1
+  "version": 2
 }

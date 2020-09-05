@@ -9,17 +9,21 @@
     <div class="tab" id="tabHeader" style="display:none">
         <button class="tablinks" id="btn_BySet">By Set</button>
         <button class="tablinks" id="btn_ByCardName">By Card Name</button>
-        <div style="float: right;">
-            <img id="txtlogo" class = "imgtextLogo" src="images/TextLogo.png" alt="textlogo"/>
-            <img id="logo" class="imgLogo" src="images/logoimage.png" alt="Logo"/>
-        </div>
+        <select id="language" class="languageChoice">
+            <option value="en_US" selected>English</option>
+            <option value="de_DE">Deutsch</option>
+            <option value="fr_FR">Français</option>
+            <option value="es_ES">Español</option>
+            <option value="it_IT">Italiano</option>
+            <option value="pt_BR">Protuguês</option>
+        </select>
     </div>
     <div class="loading" id="loadingImg">
         <p class="loadingText" id="loadingTxt">Loading All Pokemon Cards...</p>
         <p class="loadingImage">
             <img src="images/loadingGif.gif">
         </p>  
-        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.2.0 </br> Created and Maintained by Dillonzer</p>      
+        <p class="loadingBottomText">Pokemon Card Viewer - Version 1.2.1 </br> Created and Maintained by Dillonzer</p>      
     </div>
     <div class="refreshDiv" id="refreshSection">
         <p class="loadingText">Oh no! Looks like there was an issue loading all cards. Please click the button below to try again!</p>
