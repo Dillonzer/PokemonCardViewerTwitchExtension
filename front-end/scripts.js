@@ -93,6 +93,8 @@ function Refresh()
     document.getElementById("setName").style.display="none";
     document.getElementById("cardImage").style.display="none";
     document.getElementById("tabHeader").style.display="none";
+    document.getElementById("div_BySet").style.display="none";
+    document.getElementById("div_ByCardName").style.display="none";
     
     Setup(GetAllSets)
 }
