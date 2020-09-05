@@ -36,12 +36,23 @@ function Setup(GetAllSetsCallback)
 
 function GetAllSets(GetAllCardsCallback)
 {
+    var language = document.getElementById("language");
     var apiUrl = pokeurl+"/api/sets";
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
                 for(index in data) {
-                    AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
+                    if(language.value != "en_US")
+                    {
+                        if(Date.parse(data[index].releaseDate) > Date.parse('2010-01-01'))
+                        {
+                            AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
+                        }
+                    }
+                    else
+                    {                        
+                        AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
+                    }
                 }
                 GetAllCardsCallback(SetSetListBoxes);
             }).catch(err => {
@@ -82,8 +93,7 @@ function RefreshSection()
 }
 
 function Refresh()
-{
-    
+{    
     AllCards = [];
     AllSets = [];
 
@@ -103,12 +113,18 @@ function SetSetListBoxes(GetCallCardsInSetCallBack)
 {
     var setSelect = document.getElementById("setName")
     var sortedSets = AllSets.sort((a,b) => Date.parse(b.ReleaseDate) - Date.parse(a.ReleaseDate))
+    
+    var j, L = setSelect.options.length - 1;
+    for(j = L; j >= 0; j--) {
+        setSelect.remove(j);
+    }
 
     for(var i = 0; i < sortedSets.length; i++)
     {
         setSelect.options[setSelect.options.length] = new Option(sortedSets[i].Name + " (" + sortedSets[i].PTCGO_Code + ")", sortedSets[i].Code);
     }
-    setSelect.selectedIndex = "1";
+    
+    setSelect.selectedIndex = "0";
     GetCallCardsInSetCallBack()
 
 
