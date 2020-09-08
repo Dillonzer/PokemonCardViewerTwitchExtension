@@ -1,0 +1,16 @@
+Walkthrough:
+1. Hover over Stream and Click the Extension Icon
+2. Wait for loading to complete (~3 - 10 seconds)
+3. Select Language and wait for the reload (if you want to switch languages).
+4. Choose By Set or By Card Name
+5a. By Set:
+5aa: Select the Set
+5ab: Select the Card Name
+5ac: Image of the card should be showing below! 
+5b: By Card Name
+5ba: Type in a card name (for this test you can use Scyther if you don't know any card names)
+5bb: Press Search or click Enter
+5bc: An image carousal should  show up with all card containing that search term you used! Use the arrows on screen to navigate
+
+Change Log:
+- Fixed Spelling Mistakes
