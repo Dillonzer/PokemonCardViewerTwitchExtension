@@ -69,12 +69,34 @@
       "orientation": "Landscape",
       "type": "mobile",
       "viewerType": "Broadcaster"
+    },
+    {
+      "channelId": "56083652",
+      "configurationAnchor": "panel",
+      "displayChannelName": "Dillonzer",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "frameSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "id": "8",
+      "isPopout": false,
+      "label": "Panel",
+      "linked": false,
+      "linkedUserId": "",
+      "orientation": "Portrait",
+      "type": "panel",
+      "viewerType": "Broadcaster"
     }
   ],
   "frontendCommand": "",
   "frontendFolderName": "front-end",
   "manifest": {
-    "anchor": "component",
+    "anchor": "panel",
     "assetUrls": [],
     "authorName": "Dillonzer",
     "bitsEnabled": false,
@@ -94,7 +116,7 @@
     "installationCount": -42,
     "liveConfigUrl": "",
     "name": "Pokemon Card Viewer",
-    "panelHeight": 0,
+    "panelHeight": 500,
     "privacyPolicyUrl": "",
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
@@ -107,16 +129,22 @@
     "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
     "supportEmail": "dillonbast@gmail.com",
     "vendorCode": "",
-    "version": "1.2.2",
+    "version": "1.3",
     "viewerSummary": "If you aren't aware of what a card does, look it up via Set or just by Card Name! ",
-    "viewerUrl": "",
+    "viewerUrl": "https://localhost:8080/panel.html",
     "viewerUrls": {
       "mobile": "https://localhost:8080/mobile.html",
+      "panel": "https://localhost:8080/panel.html",
       "component": "https://localhost:8080/video_component.html"
     },
     "views": {
       "mobile": {
         "viewerUrl": "https://localhost:8080/mobile.html"
+      },
+      "panel": {
+        "viewerUrl": "https://localhost:8080/panel.html",
+        "height": 500,
+        "canLinkExternalContent": false
       },
       "component": {
         "viewerUrl": "https://localhost:8080/video_component.html",
@@ -141,5 +169,6 @@
     "whitelistedPanelUrls": []
   },
   "name": "Pokemon Card Viewer",
-  "version": 2
+  "version": 3,
+  "usingRandomFrontendHostingPort": true
 }

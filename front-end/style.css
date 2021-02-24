@@ -22,7 +22,6 @@
   overflow: hidden;
   border: 2px solid #cd8f00;
   background-color: #1e3781;
-  font-size: 100%;
 }
 
 .m_tab button {
@@ -109,6 +108,20 @@ button:focus {
   margin-top: 8px;
   border-radius: 7px;
   border:3px solid #cd8f00;
+  background-color: #344780;
+  color:#f2f2f2;
+  font-weight: bold;
+}
+
+.m_languageChoice {
+  width: 85px;
+  float: right;
+  margin-right: 5px;
+  height: 30px;
+  padding-left: 5px;
+  margin-top: 8px;
+  border-radius: 7px;
+  border: 2px solid #cd8f00;
   background-color: #344780;
   color:#f2f2f2;
   font-weight: bold;

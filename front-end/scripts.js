@@ -280,6 +280,7 @@ function GetCardsForSlideShow(name)
         if(mobile)
         {
             imgElem.className += " m_cardSize"
+            imgElem.style.paddingLeft = "15px"
         }
         else
         {
