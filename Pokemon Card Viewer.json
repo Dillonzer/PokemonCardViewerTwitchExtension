@@ -103,7 +103,7 @@
     "canInstall": true,
     "configUrl": "https://localhost:8080/config.html",
     "configurationLocation": "none",
-    "description": "This extension is for all Pokemon card streamers out there who are tired of loading PNGs of the cards they are talking about during streams! This extension will give users the option to load their own images while enjoying your content!",
+    "description": "This extension is for all Pokemon card streamers out there who are tired of loading PNGs of the cards they are talking about during streams! This extension will give users the option to load their own images while enjoying your content!\n\nFor sets HGSS and Beyond it has multiple language functionality as well!",
     "eulaTosUrl": "",
     "hasChatSupport": false,
     "iconUrl": "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/logoa8d3ce58-b9f7-413a-b77b-41e43d10e73f",
@@ -121,15 +121,16 @@
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
     "screenshotUrls": [
-      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.1.2/screenshotd38917bd-e78e-4b41-9adf-a8bae95fb84e"
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.3/screenshot214a03bf-2079-4a3b-af73-ee12cd316d84",
+      "https://extensions-discovery-images.twitch.tv/nrrvpf717ckxt3g6k48vlbi7jonv8x/1.3/screenshot493a1da5-cb31-47d3-97d4-7a5a49bb1d75"
     ],
     "sku": "",
     "state": "Testing",
     "subscriptionsSupportLevel": "none",
-    "summary": "Allows users to look up Pokemon Cards rather than the Streamer having to manually bring up a card.",
-    "supportEmail": "dillonbast@gmail.com",
+    "summary": "Allows users to easily view all released Pokemon Cards right on the streamers channel! ",
+    "supportEmail": "dillonzerapps@gmail.com",
     "vendorCode": "",
-    "version": "1.3",
+    "version": "1.3.2",
     "viewerSummary": "If you aren't aware of what a card does, look it up via Set or just by Card Name! ",
     "viewerUrl": "https://localhost:8080/panel.html",
     "viewerUrls": {
