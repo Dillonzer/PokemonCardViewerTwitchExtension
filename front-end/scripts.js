@@ -1,5 +1,3 @@
-const pokeurl = "https://pkmntcgapi-production.up.railway.app"
-
 var AllCards = [];
 var AllSets = [];
 
@@ -36,23 +34,12 @@ function Setup(GetAllSetsCallback)
 
 function GetAllSets(GetAllCardsCallback)
 {
-    var language = document.getElementById("language");
-    var apiUrl = pokeurl+"/api/sets";
+    var apiUrl = "https://raw.githubusercontent.com/Dillonzer/dillonzer.github.io/master/data/sets.json";
             fetch(apiUrl).then(response => {
             return response.json();
             }).then(data => {
-                for(index in data) {
-                    if(language.value != "en_US")
-                    {
-                        if(Date.parse(data[index].releaseDate) > Date.parse('2010-01-01'))
-                        {
-                            AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
-                        }
-                    }
-                    else
-                    {                        
-                        AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
-                    }
+                for(index in data) {                                       
+                    AllSets.push(new Set(data[index].name, data[index].code, data[index].ptcgoCode, data[index].releaseDate));
                 }
                 GetAllCardsCallback(SetSetListBoxes);
             }).catch(err => {
@@ -64,8 +51,7 @@ function GetAllSets(GetAllCardsCallback)
 function GetAllCards(SetSetListBoxCallback)
 {
     var cardCounter = 0
-    var language = document.getElementById("language");
-    var apiUrl = pokeurl+"/api/cards?locale="+language.value
+    var apiUrl = "https://raw.githubusercontent.com/Dillonzer/dillonzer.github.io/master/data/cards.json";
         fetch(apiUrl).then(response => { 
             return response.json(); 
         }).then(data => {
@@ -213,8 +199,7 @@ function EventListeners()
     document.getElementById("prevSlide").addEventListener("click",function() {plusSlides(-1)})
     document.getElementById("nextSlide").addEventListener("click",function() {plusSlides(1)})  
     document.getElementById("btn_refresh").addEventListener("click",function() {Refresh()})   
-    document.getElementById("language").addEventListener("change",function() {Refresh()})   
-}
+    }
 
 //SLIDESHOW STUFF
 var slideIndex = 1

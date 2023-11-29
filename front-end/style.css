@@ -211,6 +211,7 @@ input[type=checkbox] {
 .imgtextLogo {
   height: 40px;
   padding-top: 3px;
+  padding-left: 30px;
 }
 
 .m_imgLogo {
@@ -223,6 +224,7 @@ input[type=checkbox] {
   height: 40px;
   width: 95px;
   padding-top: 3px;
+  padding-left: 10px;
 }
 
 .refreshDiv {
